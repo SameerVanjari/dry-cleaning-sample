@@ -6,12 +6,15 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { useToast } from "./ui/use-toast";
 import { useFormik } from "formik";
-import { redirect, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+// import { redirect, useRouter } from "next/navigation";
+
+const MyMap = dynamic(() => import("./MapDemo"), { ssr: false });
 
 const StepperForm = () => {
   const [step, setStep] = useState(1);
   const { toast } = useToast();
-  const router = useRouter();
+  // const router = useRouter();
 
   const testForm = useFormik({
     initialValues: {
@@ -26,7 +29,7 @@ const StepperForm = () => {
         title: "Form Submitted successfully",
         color: "#fe5",
       });
-      router.push("/");
+      // router.replace("/");
     },
   });
 
@@ -45,7 +48,7 @@ const StepperForm = () => {
           <div className="">
             <h2 className="font-sans mb-2">Step 1: Select your Location</h2>
             <div className="rounded-xl overflow-hidden">
-              <MapDemo loc={testForm.setFieldValue} />
+              <MyMap loc={testForm.setFieldValue} />
             </div>
             <Button className="mt-7" onClick={handleNextStep}>
               Next

@@ -1,9 +1,9 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
-import L, { LatLngExpression, LatLngTuple, Map } from "leaflet";
+import L, { Map } from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
-import { Formik, FormikHandlers, FormikHelpers, FormikValues } from "formik";
 
 const MapDemo = ({ loc }: { loc: any }) => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
@@ -67,7 +67,7 @@ const MapDemo = ({ loc }: { loc: any }) => {
         marker.remove();
       };
     }
-  }, [map, currentLocation]);
+  }, [map, currentLocation, loc]);
 
   return (
     <div>
