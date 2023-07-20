@@ -7,14 +7,14 @@ import { Label } from "./ui/label";
 import { useToast } from "./ui/use-toast";
 import { useFormik } from "formik";
 import dynamic from "next/dynamic";
-// import { redirect, useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const MyMap = dynamic(() => import("./MapDemo"), { ssr: false });
 
 const StepperForm = () => {
   const [step, setStep] = useState(1);
   const { toast } = useToast();
-  // const router = useRouter();
+  const router = useRouter();
 
   const testForm = useFormik({
     initialValues: {
@@ -29,7 +29,7 @@ const StepperForm = () => {
         title: "Form Submitted successfully",
         color: "#fe5",
       });
-      // router.replace("/");
+      router.push("/");
     },
   });
 
